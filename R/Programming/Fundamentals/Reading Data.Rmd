@@ -1,0 +1,68 @@
+---
+title: "Reading Data into R"
+author: "Akis"
+date: "1/7/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<center> <h1> Reading Data </h1> </center>
+
+There are a few principal functions for reading data into R.
+
+* `read.table()`, `read.csv()`, for reading tabular data (dataframe)
+* `readLines`, for reading lines of a text file (returns a character vector)
+* `source `, for reading R code files (inverse of dump)
+* `dget`, for reading R code files (inverse of dput)
+* `load`, for reading in saved workspaces
+* `unserialize`, for reading single R objects in binary form
+
+<center> <h1> Writing Data </h1> </center>
+
+There are analogous functions for writing data to files.
+
+* `write.table()`
+* `writeLines()`
+* `dump`
+* `dput`
+* `save`
+* `serialize`
+
+# Reading Data Files with read.table
+
+the `read.table()` function is one of the most common functions for reading data. It has a few important arguments.
+
+* `file`, the name of a file, or a connection
+* `header`, logical (TRUE/FALSE) indicating if the file has a header line (variable names)
+* `sep`, a string indicating how the columns are separated
+* `colClasses`, a character vector indicating the class of each column in the dataset
+* `nrows`, the number of rows in the dataset
+* `comment.char`, a character string indicating the comment character
+* `skip`, the  number of lines to skip from the beginning
+* `stringsAsFactors`, should character variables be coded as factors?
+
+For small to moderately sized datasets, you can usually call `read.table()` without specifying any other arguments.
+
+```{r}
+# data <- read.table("foo.txt")
+```
+
+# Reading in Larger Datasets with read.table
+
+With large data sets we need to consider the following things:
+
+* Read the help page for `read.table` which contains many hints
+* Make a rough calculation of the memory required to store your data set. If it is larger that the amount of RAM on your computer, you can probably stop right there. [Check out this guide.](https://medium.com/@robertopreste/tabular-data-memory-requirements-9881d2bf747a)
+* Set `comment.char = ` (blank) if there are no commented lines in your file.
+\
+\
+* Use the `colClasses` argument. Specifying this option instead of using the default can make `read.table()` run MUCH faster. You have to know the class of each column in your data frame. If all of the columns are "numeric", for example, then you can just set `colClasses = "numeric"`. A quick way to figure out the classes of each column is to read only the first 100 or 1000 rows of your data set by specifying the `nrows` argument and then looping over each of the columns using `sapply()` and call the `class` function. Then, we can read the entire data set as shown below:
+
+```{r}
+# initial <- read.table("datatable.txt", nrows = 100)
+# classes <- sapply(initial, classes)
+# tabAll <- read.table("datatable.txt", colClasses = classes)
+```
