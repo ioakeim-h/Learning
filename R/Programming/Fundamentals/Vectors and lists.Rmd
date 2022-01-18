@@ -1,0 +1,40 @@
+---
+title: "Vectors and Lists"
+author: "Akis"
+date: "16/12/2021"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Creating Vectors
+
+The ```c()``` function can be used to create vectors of objects.
+
+```{r}
+x <- c(0.5, 0.6)       ## numeric
+x <- c(TRUE, FALSE)    ## logical
+x <- c(T, F)           ## logical
+x <- c("a", "b", "c")  ## character
+x <- 9:29              ## integer
+x <- c(1+0i, 2+4i)       ## complex
+```
+
+Using the ```vector()``` function:
+```{r}
+x <- vector("numeric", length = 10) #for numeric vectors the    default value is zero.
+print(x)
+```
+
+### Mixing objects
+
+When different objects are mixed in a vector, *coercion* occurs so that every element in the vector if of the same class.
+
+```{r}
+y <- c(1.7, "a")   ## character
+y <- c(TRUE, 2)    ## numeric
+y <- c("a", TRUE)  ##character
+```
+
