@@ -1,0 +1,25 @@
+---
+title: "Missing Values"
+author: "Akis"
+date: "18/01/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<center><h1> Missing Values </center></h1>
+
+Missing values are denoted by **NA** or **NaN** for undefined mathematical operations.
+
+* `is.na()` is used to test for NAs in objects
+* `is.NaN` is used to test for NaN
+* NA values have a class also, so there are integer NA, character NA, etc
+* A NaN value is also NA but the converse is not true
+
+```{r}
+x <- c(1, 2, NA, 10, 3)
+is.na(x)
+is.nan(x)
+```
