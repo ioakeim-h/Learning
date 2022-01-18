@@ -1,0 +1,81 @@
+---
+title: "Subsetting basics"
+author: "Akis"
+date: "17/01/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Subsetting objects in R
+
+A number of operators can be used to extract subsets of R objects:
+
+* [] - returns an object of the same class as the original (can be used to select more than one element with one exception...)
+
+For example if you subset a vector you will get back a vector. Subset a list and you will get a list.
+
+```{r}
+#Extract the first element of object x
+x <- c("a", "b", "c", "d", "e")
+x[1]
+
+#Extract the first 3 elements of object x
+x[1:3]
+```
+
+
+
+* [[]] - extracts elements of a list or data frame (can only be used to extract a single element but the returned object will not necessarily be a list or data frame)
+
+Remember lists can hold objects of different classes.
+
+* $ - extracts elements of a list or data frame by name
+
+One of the reasons to use names for objects is to make reference to different elements of the object by name. 
+
+```{r}
+x <- list(foo = 1:4, bar = 0.6)
+# Extract the first element of the list x
+# Use single brackets
+x[1]
+
+# Use dollar sign
+x$foo
+
+# Use double brackets
+x[[1]]
+```
+
+foo is the first element and it is a sequence from 1 to 4, and bar is the second element and it is a number.
+Using the single brackets we got the list that contained the sequence 1 to 4. By using the dollar sign and the double brackets we just got the sequence. That is their difference.
+
+## Extracting multiple elements of a list
+To extract multiple elements from a list we need to use the single bracket operator.
+
+```{r}
+x <- list(foo = 1:4, bar = 0.6, baz = "hello")
+# Extract the first and last element of the above list
+x[c(1,3)]
+```
+
+You cannot use double brackets or the dollar sign operator to extract multiple elements.
+
+## Subsetting matrices
+
+Can be done in the usual way
+
+```{r}
+x <- matrix(1:6, 2, 3)
+x[1,2]
+
+# indices can also be missing
+x[1, ] # First row
+x[, 2] # Second column
+
+```
+
+
+

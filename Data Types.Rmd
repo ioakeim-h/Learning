@@ -1,0 +1,75 @@
+---
+title: "Data Types"
+author: "Akis"
+date: "1/3/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<center> <h1>Objects and Attributes</h1> </center>
+
+### Five basic atomic classes of objects
+
+* character (or string)
+
+* Numeric 
+
+* Integer
+
+* Complex
+
+* Logical (True/False)
+
+### Object Attributes
+
+The properties associated with an object is called an attribute. These properties explain what the object represents.
+
+* names, dimnames
+
+* dimensions (e.g., arrays, matrices)
+
+* class
+
+* length
+
+* user-defined attributes/metadata
+
+The attributes of an object can be accessed with the ```attributes()``` function.
+
+### Objects
+
+* <font size="3"> Vector </font>\
+A sequence of elements of the **same data type**. Create vectors with the functions ```vector()``` and ```c()```.\
+
+```{r}
+x <- vector("numeric", length = 5) 
+```
+```{r}
+x <- c("a" , "b", "c") #character
+x <- c(0.7, 0.8) #numeric
+x <- 3:9 #integer
+x <- c(1+0i, 2+4i) #complex
+x <- c(T, F) #logical
+```
+
+
+
+```c()```is also used to create vectors.
+
+* <font size="3"> List </font> ```<-``` A sequence of elements of **different data types**.\
+Corresponding function is ```list()```.
+
+* <font size="3"> Matrix </font> ```<-``` A collection of elements of the **same data type arranged into a fixed number of rows and columns**.\
+Corresponding function is ```matrix()```.
+
+* <font size="3"> Array </font> ```<-``` An array can have **one, two or more dimensions** (see Object Attributes).\
+Corresponding function is ```array()```.
+
+* <font size="3"> Factor </font> ```<-``` Used to represent **categorical data** (e.g., males, females).\
+Corresponding function is ```factor()```.
+
+* <font size="3"> Data Frame </font> ```<-``` Display data in a **table format** (like SPSS).\
+Corresponding function is ```data.frame()```.
