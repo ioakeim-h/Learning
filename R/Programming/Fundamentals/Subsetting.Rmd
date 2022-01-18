@@ -110,4 +110,64 @@ The double bracket operator expects that the name you pass it is going to be an 
 x <- list(aardvark = 1:5)
 x[["a", exact = FALSE]]
 ```
+# Subsetting - Missing values (NAs)
+
+### Removing missing values 
+
+```{r}
+x <- c(1, 2, NA, 4, NA, 5)
+bad <- is.na(x) #Creates logical vector specifying where the NAs are.
+bad
+x[!bad] #From x, it removes bad (which has the NAs).
+```
+Just like single-bracket sub-setting, saying `x[bad]` would return only the values in bad which are the NAs. Including the exclamation mark `x[!bad]` means that we want everything except what is stored in bad.
+
+### Getting only the non-missing values
+
+```{r}
+x <- c(1, 2, NA, 4, NA, 5)
+good <- complete.cases(x)
+good
+x[good]
+```
+### Removing NAs from data frames
+
+We can use complete.cases to remove missing values from data frames.
+
+```{r}
+airquality[1:6, ] #data frame
+good <- complete.cases(airquality)
+airquality[good, ][1:6, ]
+```
+# Vectorized operation
+
+Suppose that you have two vectors, x and y. x is the sequence 1:4 and y 6:9 and you want to add the two vectors together. What we mean when we say add them is to add the first element of x to the first element of y (i.e. 1 + 6). In other programming languages this would require to loop through each element but in R we can just use the + operator:
+
+```{r}
+x <- 1:4; y <- 6:9
+x + y
+```
+We can also multiply, subtract and divide.
+
+```{r}
+x <- 1:4; y <- 6:9
+x - y
+x * y
+x / y
+```
+
+
+##### Vectorized matrix operations
+
+You can do the same with matrices.
+
+```{r}
+x <- matrix(1:4, 2, 2); y <- matrix(rep(10, 4), 2, 2) # rep() replicates 10 four times
+
+x * y ## element-wise multiplication
+x / y 
+x %*% y ## true matrix multiplication
+
+```
+
 
