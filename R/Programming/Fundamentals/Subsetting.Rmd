@@ -34,6 +34,8 @@ Remember lists can hold objects of different classes.
 
 * $ - extracts elements of a list or data frame by name
 
+# Subsetting lists
+
 One of the reasons to use names for objects is to make reference to different elements of the object by name. 
 
 ```{r}
@@ -63,19 +65,49 @@ x[c(1,3)]
 
 You cannot use double brackets or the dollar sign operator to extract multiple elements.
 
-## Subsetting matrices
+# Subsetting matrices
 
-Can be done in the usual way
 
 ```{r}
 x <- matrix(1:6, 2, 3)
-x[1,2]
+x[1,2] #first row, second column
 
 # indices can also be missing
-x[1, ] # First row
-x[, 2] # Second column
+x[1, ] # prints first row
+x[, 2] # prints second column
 
 ```
 
+When a single element of a matrix is retrieved, it is returned as a vector of length 1 rather than a 1 x 1 matrix. This behavior can be turned off by setting `drop = FALSE`.
 
+```{r}
+x <- matrix(1:6, 2, 3)
+x[1,2, drop = FALSE]
+```
+This gave us back a 1 x 1 matrix with the element 3 in it. An example with missing indices:
+
+```{r}
+x <- matrix(1:6, 2, 3)
+x[1, , drop = F]
+```
+
+# Subsetting with names - Partial Matching
+
+A partial match occurs if the whole of the element of x matches the beginning of the element of table. Finally, all remaining elements of x are regarded as unmatched.
+
+Partial matching of names is allowed with `[[]]` and `$`.
+
+```{r}
+x <- list(aardvark = 1:5)
+x$a
+x[["a"]]
+```
+The `$` looks for a name in this list that matches the letter a. In this case we only have one element and (aardvark) and it returns the associated sequence (1:5).
+
+The double bracket operator expects that the name you pass it is going to be an exact match for one of the names in the list. By default, the `[[]]` does not do partial matching. In the above list we get a NULL value because there is no element in the list that has the name a. However, if we pass a second argument (`exact = FALSE`) we can make the search more flexible:
+
+```{r}
+x <- list(aardvark = 1:5)
+x[["a", exact = FALSE]]
+```
 
