@@ -1,0 +1,42 @@
+---
+title: "Tips and Tricks"
+author: "Akis"
+date: "19/01/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Save time when typing errors!
+
+In many programming environments, the up arrow will cycle through previous commands.
+
+# Can't remember variable names
+
+Let's pretend you'd like to view the contents of a variable that you created earlier, but you can't seem to remember if you named it my_div or myDiv. You can type the first two letters of the variable name, then hit the Tab key (possibly more than once).
+
+# View all objects in your workspace, working directory
+
+* workspace - `ls()`
+* working directory - `list.files()` or `dir()`
+
+# What arguments can a function take?
+
+`args()` - function goes inside parenthesis as in args(list.files)
+
+# Working in directories
+## Create a directory in the current working directory
+`dir.create()` - name of new directory goes inside parenthesis as ine dir.create("testdir")
+
+## Create a file in your working directory
+`file.create()` - as in file.create("mytest.R")
+
+## Check if a certain file exists in your current working directory
+`file.exists()` as in file.exists("mytest.R")
+
+## Access information about a file in your directory
+
+`file.info()` - as in file.info("mytest.R")
+You can use the `$` operator --- e.g., `file.info("mytest.R")$mode` --- to grab specific items.
