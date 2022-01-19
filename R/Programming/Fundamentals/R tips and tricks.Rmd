@@ -27,16 +27,48 @@ Let's pretend you'd like to view the contents of a variable that you created ear
 `args()` - function goes inside parenthesis as in args(list.files)
 
 # Working in directories
+
+## Save your current working directory
+
+mywd <- getwd()
+
+Now when you move to another directory you can return to your original one using setwd(mywd)
+
 ## Create a directory in the current working directory
-`dir.create()` - name of new directory goes inside parenthesis as ine dir.create("testdir")
+`dir.create()` - name of new directory goes inside parenthesis as in dir.create("testdir")
 
 ## Create a file in your working directory
 `file.create()` - as in file.create("mytest.R")
 
 ## Check if a certain file exists in your current working directory
-`file.exists()` as in file.exists("mytest.R")
+`file.exists()` - as in file.exists("mytest.R")
 
-## Access information about a file in your directory
+## Access information about a file in your current directory
 
 `file.info()` - as in file.info("mytest.R")
 You can use the `$` operator --- e.g., `file.info("mytest.R")$mode` --- to grab specific items.
+
+## Change file names inside your current directory
+
+`file.rename()` - as in file.rename("mytest.R", "mytest2.R") 
+
+## Delete files in your current working directory
+`file.remove()` - as in file.remove("mytest.R")
+
+## Copy files in your current working directory
+
+`file.copy()` - as in file.copy("mytest2.R", "mytest3.R")
+
+## Provide the relative path to a file
+
+`file.path()` - as in file.path("mytest3.R")
+
+You can use file.path to construct file and directory paths that are independent of the operating system your R
+code is running on. Pass 'folder1' and 'folder2' as arguments to file.path to make a platform-independent pathname. For example: `file.path("folder1", "folder2")`
+
+## Create nested directories
+
+Take a look at the documentation for dir.create by entering ?dir.create. Notice the 'recursive' argument. In
+order to create nested directories, 'recursive' must be set to TRUE. Create a directory in the current working directory called "testdir2" and a subdirectory for it called "testdir3", all in one command by using dir.create() and file.path().
+
+`dir.create(file.path("testdir2", "testdir3"), recursive = TRUE)`
