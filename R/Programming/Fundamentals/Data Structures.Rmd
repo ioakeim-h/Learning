@@ -11,8 +11,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <u><center><h1> Data Structures </u></center></h1>
 
+Any object that contains data is called a data structure.
+
 * <font size="3"> Vector </font>\
-A sequence of elements of the **same data type**. Create vectors with the functions ```vector()``` and ```c()```.\
+A sequence of elements of the **same data type**. Even a single number is considered a vector of length 1. Create vectors with the functions ```vector()``` and ```c()```.\
 
 * <font size="3"> List </font> ```<-``` A sequence of elements of **different data types**.\
 Corresponding function is ```list()```.
@@ -44,6 +46,16 @@ Using the ```vector()``` function:
 x <- vector("numeric", length = 10) #for numeric vectors the    default value is zero.
 print(x)
 ```
+
+Mathematical operations with vectors are performed on each of their elements. For example:
+```{r}
+my_vector <- c(1, 2, 3)
+my_vector + 1 #Adds one to each of the element of my_vector.
+
+my_vector1 <- c(2,4,6)
+my_vector + my_vector1 #Adds the 1st element of my_vector to the 1st of my_vector1, the 2nd to the 2nd, etc...
+```
+
 
 ### Mixing objects
 
