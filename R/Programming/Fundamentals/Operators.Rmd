@@ -9,9 +9,24 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Logical operators
+<center><h1> Logic </center></h1>
+
+## Logical operators
 
 * `<` , `>`
 * `<=` , `=>`
 * `==` for exact equality
 * `!=` for inequality
+
+## Logical statements
+
+If we have two logical expressions, A and B, we can ask whether at least one is TRUE with A | B (logical 'or'
+a.k.a. 'union') or whether they are both TRUE with A & B (logical 'and' a.k.a. 'intersection'). Lastly, !A is
+the negation of A and is TRUE when A is FALSE and vice versa.
+
+Break this problem down into 2 pieces. The `|` in the middle states that AT LEAST ONE of the pieces is TRUE.
+```{r}
+(TRUE == TRUE) | (TRUE == FALSE)
+```
+
+

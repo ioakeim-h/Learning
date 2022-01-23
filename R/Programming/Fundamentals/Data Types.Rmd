@@ -66,3 +66,12 @@ m
 ```
 
 When using the **dimnames** function, we assign it a list where the first element of the list is a vector of row names and the second element is a vector of column names. So we have named the rows a and b, and named the columns c and d. 
+
+# Give names to pre-existing objects
+```{r}
+# Unnamed object
+vect2 <- c(11, 2, NA)
+# Naming the object
+names(vect2) <- c("foo", "bar", "norf")
+```
+

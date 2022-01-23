@@ -34,6 +34,37 @@ Remember lists can hold objects of different classes.
 
 * $ - extracts elements of a list or data frame by name
 
+# Subsetting vectors
+How to extract elements from a vector based on specified conditions:
+
+For example, we may only be interested in the first 20 elements of a vector, or only the elements that are not NA, or only those that are positive or correspond to a specific variable of interest.
+
+```{r}
+# Example object
+c(1.45989479898373, NA, NA, NA, 0.343478985070138, -0.765250400381116, 
+0.592711619887493, 0.475780864848148, NA, -1.49800584466182, 
+0.970123875340488, NA, 1.49381622542397, NA, -1.12876916959833, 
+NA, 0.901829750106227, NA, NA, -0.978058674564382, -0.14728923135403, 
+NA, -0.0930325364474759, NA, NA, 0.265485649676846, NA, -0.681746435250382, 
+0.368718594581899, NA, -1.43797529068594, -0.596616172600607, 
+NA, NA, -1.16721680865855, NA, NA, NA, NA, 0.281394062459285)
+
+# Get only the NAs
+x[is.na(x)]
+
+# Get all the non-NA values
+y <- x[!is.na(x)]
+
+# Get the 3rd, 5th and 7th element of x
+x[c(3,5,7)]
+
+# Get all elements of x EXCEPT the 2nd and 10th
+x[c(-2, -10)] # Using negative integer indexes returns all the elements of x except the negatives specified
+# A quicker way to do this is to put the negative sign in front of the vector
+x[-c(2,10)]
+```
+
+
 # Subsetting lists
 
 One of the reasons to use names for objects is to make reference to different elements of the object by name. 
@@ -139,7 +170,7 @@ airquality[1:6, ] #data frame
 good <- complete.cases(airquality)
 airquality[good, ][1:6, ]
 ```
-# Vectorized operation
+# Vectorized operations
 
 Suppose that you have two vectors, x and y. x is the sequence 1:4 and y 6:9 and you want to add the two vectors together. What we mean when we say add them is to add the first element of x to the first element of y (i.e. 1 + 6). In other programming languages this would require to loop through each element but in R we can just use the + operator:
 

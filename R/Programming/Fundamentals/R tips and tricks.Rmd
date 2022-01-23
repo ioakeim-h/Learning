@@ -72,3 +72,10 @@ Take a look at the documentation for dir.create by entering ?dir.create. Notice 
 order to create nested directories, 'recursive' must be set to TRUE. Create a directory in the current working directory called "testdir2" and a subdirectory for it called "testdir3", all in one command by using dir.create() and file.path().
 
 `dir.create(file.path("testdir2", "testdir3"), recursive = TRUE)`
+
+
+# Get code for an existing object
+dput(object)
+
+# Check if objects are identical
+identical(object1, object2)
