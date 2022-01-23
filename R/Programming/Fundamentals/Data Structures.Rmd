@@ -199,4 +199,24 @@ ncol(x) #returns number of columns
 ```
 
 
+### Add columns to an existing data frame
+
+```{r}
+# my data set
+my_matrix <- matrix(1:20, nrow = 4, ncol = 5)
+# Column to add
+patients <- c("Bill", "Gina", "Kelly", "Sean")
+
+# Add to data set
+new_dataset <- cbind(my_matrix, patients)
+new_dataset
+
+# Add column names
+cnames <- c("pid", "age", "weight", "bp", "rating", "patient")
+colnames(new_dataset) <- cnames
+new_dataset
+```
+
+
+
 
