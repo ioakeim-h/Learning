@@ -1,0 +1,72 @@
+---
+title: "Control Structures"
+author: "Akis"
+date: "24/01/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<center><h1> Control Structures </center></h1>
+
+Control structures control the flow of execution of the program. Common structures are:
+
+* if,else: testing a condition
+* for: execute a loop a fixed number of times
+* while: execute a loop *while* a condition is true
+* repeat: execute an infinite loop
+* break: break the execution of a loop
+* next: skip an iteration of a loop
+* return: exit a function
+
+# if-else statements
+
+Tets logic conditions...
+
+```{r, eval=FALSE}
+### If-Else ###
+if(<condition>) {
+  ## do something
+} else {
+  ## do something else
+}
+
+### Elif (in python) ###
+if(<condition>) {
+  ## do something
+} else if(<condition2>) {
+  ## do something different
+} else {
+  # do something different
+}
+```
+
+The else part is optional but it can be used if you want to do something alternatively. Example:
+
+```{r}
+# example 1
+x <- 2
+
+if(x > 3) {
+  y <- 10
+} else {
+  y <- 10
+}
+
+# example 2
+y <- if(x > 3) {
+  10
+} else {
+  0
+}
+
+# example 3
+if(x > 1) {
+  z <- 5
+}
+```
+
+
+
