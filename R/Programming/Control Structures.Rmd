@@ -21,7 +21,7 @@ Control structures control the flow of execution of the program. Common structur
 * next: skip an iteration of a loop
 * return: exit a function
 
-# if-else statements
+<center><h1> if-else statements </center></h1>
 
 Tets logic conditions...
 
@@ -68,5 +68,108 @@ if(x > 1) {
 }
 ```
 
+<center><h1> For loops </center></h1>
 
+For loops are most commonly used for iterating over the elements of an object.
 
+```{r}
+for(i in 1:10) {
+  print(i)
+}
+```
+
+This loop takes the **i** variable and in each iteration of the loop gives it values 1,2,3, ..., 10, and then exits.
+
+```{r}
+x <- c("a", "b", "c", "d")
+
+# these two loops have the same behavior
+for(i in 1:4) {
+  print(x[i])
+}
+
+for(letter in x) {
+  print(letter)
+}
+```
+
+## Nested for loops
+
+You can have a for loop inside a for loop; this is called nesting. Nessting beyond 2-3 levels canbe very difficult to understand.
+
+```{r}
+x <- matrix(1:6, 2, 3)
+
+for(i in seq_len(nrow(x))) {
+  for(j in seq_len(ncol(x))) {
+    print(x[i, j])
+  }
+}
+```
+
+<center><h1> While loops </center></h1>
+
+While loops begin by testing a condition. If it is true, then they execute the loop body. once the loop body is executed, the condition is tested again, and so forth.
+
+```{r}
+count <- 0
+while(count < 10) {
+  print(count)
+  count <- count +1
+}
+```
+
+### Conditions
+
+Sometimes there will be more than one condition in the tet.
+
+```{r}
+z <- 5
+
+while(z >= 3 && z <= 10) { # && is and
+  print(z)
+  coin <- rbinom(1, 1, 0.5) # flip a coin, rbinom = random number generation
+  
+  if(coin == 1) { # random walk
+    z <- z + 1
+  } else {
+    z <- z - 1
+  }
+}
+```
+
+<center><h1> Repeat, Next, Break </center></h1>
+
+## repeat
+Repeat initiates an infinite loop. The only way to exit a **repeat** loop is to call **break**.
+
+```{r, eval=FALSE}
+x0 <- 1
+tol <- 1e-8
+
+repeat {
+  x1 <- computeEstimate() ## imaginary function
+  
+  if(abs(x1 - x0) < tol) {
+    break
+  } else {
+    x0 <- x1
+  }
+}
+```
+
+## next, return
+
+**next** is used to skip an iteration of a loop.
+
+```{r}
+for(i in 1:100) {
+  if(i <= 20) {
+    ## Skip the first 20 iterations
+    next
+  }
+  ## Do something here
+}
+```
+
+return signals that a function should exit and return a given value.
