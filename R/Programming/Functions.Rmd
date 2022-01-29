@@ -1,0 +1,25 @@
+---
+title: "Functions"
+author: "Akis"
+date: "29/01/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<center><h1> Create a function </center></h1>
+
+Put your functions in a separate file, an Rscript (not directly in the command line). In the future, you will want to put functions in an R package.
+
+The following function takes two numbers and adds them together.
+
+```{r}
+add <- function(x,y) {
+x+y
+}
+
+add(3, 5)
+```
+The function adds two values so it has to take two arguments (x and y). Calling add and passing it the arguments 3 and 5 returns 8, meaning that the function works.
