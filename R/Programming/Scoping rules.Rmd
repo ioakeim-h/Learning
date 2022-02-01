@@ -69,17 +69,12 @@ square(3) # 3^2
 
 Question: Why **make.power(3)** returns the value of the function **pow** (which is the function itself), but when we store **make.power(3)** to object **cube** and then call **cube(3)** we get the right output?
 
+Answer:  The **make.power** function returns the function **pow** as its value. Storing make.power(3) to the object cube means that the **n** argument has taken the value of 3. Then, calling cube(3) means that the x argument has also taken the value of 3. The final expression of pow is x^n and so 3^3 returns 27.
+
+
 * If the value of a symbol is not found in the environment in which a function was defined, then the search is continued in the *parent environment*.
 * The search continues down the sequence of parent environments until we hit the *top-level environment*; this is usually the global environment (workspace) or the namespace of a package.
 * After the top-level environment, the search continues down th search list until we hit the *empty environment*. If a value for a given symbol cannot be found once the empty environment is arrived at, then an error is thrown.
-
-Answer:  The **make.power** function returns the function **pow** as its value.
-
-The symbol **n** is a free variable in the**pow** function. However, **n** is defined in the **make.power** function.
-
-Moving from one level (environment) to the next
-
-
 
 
 
