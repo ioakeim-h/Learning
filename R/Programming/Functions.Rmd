@@ -9,9 +9,105 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<center><h1> Create a function </center></h1>
+<center><h1> Functions </center></h1>
 
-Put your functions in a separate file, an Rscript (not directly in the command line). In the future, you will want to put functions in an R package.
+Put your functions in a separate file, an Rscript (not directly in the command line). 
+
+* Store the function in a new object
+* Specify how many arguments the function takes
+* Provide the functionality of the function
+
+```{r, eval=FALSE}
+f <- function(<arguments>) {
+  # code here
+}
+```
+
+* Functions can be passed as arguments to other functions
+* Functions can be nested, so that you can define a function inside of another function. The return value of a function is the last expression in the function body to be evaluated
+
+## Function arguments
+
+Functions have named arguments which potentially have default values.
+
+* The formal arguments are the arguments included in the function definition
+* The **formals** function returns a list of all the formal arguments of a function
+* Not every function call in R makes use of all the formal arguments
+* Function arguments can be missing or might have default values
+
+### Argument matching
+
+R functions can be matched positionally or by name. The following calls to sd are equivalent.
+
+```{r, eval =FALSE}
+sd(mydata)
+sd(x = mydata)
+sd(x = mydata, na.rm = FALSE)
+sd(na.rm = FALSE, x = mydata)
+sd(na.rm = FALSE, mydata)
+```
+
+Positional matching and matching by name can be mixed. This is useful for functions that have very long argument lists. Named arguments, however, help if you cannot remember the position on the argument list but you can remember the name of the argument.
+
+### Defining a function
+
+In addition to not specifying a default value, you can also set an argument value to NULL.
+
+```{r}
+f <- function(a, b=1, c = 2, d = NULL) {
+  
+}
+```
+
+## Lazy evaluation
+
+Arguments to functions are evaluated *lazily*, so they are evaluated only as needed.
+
+```{r}
+f <- function(a, b) {
+  a^2
+}
+f(2)
+```
+
+This function never actually uses the argument `b`, so calling `f(2)` will not produce an error because the 2 gets positionally matched to `a`.
+
+
+```{r}
+f <- function(a, b) {
+  print(a)
+  print(b)
+}
+f(45)
+```
+Notice that "45" got printed first before the error was triggered. This is because `b` did not have to be evaluated until after `print(a)`. Once the function tried to evaluate `print(b)` it had to throw an error.
+
+## The "..." argument
+The ... argument indicates a variable number of arguments that are usually passed on to other functions.
+* ... is often used when extending another function and you don't want to copy the entire argument list of the original function.
+
+
+
+Lets say that we want to change something in the plot() function. We create our own function "myplot" which will replicate some of the arguments of the original plot function, like x and y, but its going to change the default "type" argument. However, the plot() function has many other arguments and we want to leave them as they are. this is where we pas the "..." which will be used to preserve all the other arguments in the plot() function. 
+
+```{r}
+myplot <- function(x, y, type = "l", ...) {
+  plot(x, y, type = type, ...)
+}
+```
+
+The ... argument is also necessary when the number of arguments passed to the function cannot be known in advance.
+
+```{r, eval=FALSE}
+args(paste)
+function(..., sep = " ", collapse = NULL)
+```
+
+The paste() function concatenates a set of strings to create a vector of strings. There is no way for the function to know how many arguments to paste together and so the first argument is ...
+
+One catch with ... is that any arguments that appear **after** ... on the argument list must be named explicitly and cannot be partially matched.
+
+#### Example 1
 
 The following function takes two numbers and adds them together.
 
@@ -23,3 +119,84 @@ x+y
 add(3, 5)
 ```
 The function adds two values so it has to take two arguments (x and y). Calling add and passing it the arguments 3 and 5 returns 8, meaning that the function works.
+
+#### Example 2
+Where x is a series of numbers, the function 'above10' returns the numbers that are above 10.
+```{r}
+above10 <- function(x) {
+  use <- x > 10
+  x[use]
+}
+
+x <- 1:20
+above10(x)
+```
+
+A similar example is the following:
+
+```{r}
+above <- function(x, n) {
+  use <- x > n
+  x[use]
+}
+
+x <- 1:20
+above(x, 12) # 12 takes the place of n
+```
+
+
+You can also specify **default values** in your functions with the '=' operator. For example:
+
+```{r}
+above <- function(x, n = 10) { # n is 10 by default
+  use <- x > n
+  x[use]
+}
+
+x <- 1:20
+above(x) # no need for the n argument
+```
+
+
+#### Example 3 (missing values)
+A function to calculate the mean of each column in a data frame.
+
+```{r}
+columnMean <- function(y) {
+  nc <- ncol(y) 
+  means <- numeric(nc) 
+  
+  for(i in 1:nc) {
+    means[i] <- mean(y[, i])
+  }
+  
+  means
+}
+
+columnMean(airquality)
+```
+
+Argument y is going to be a data frame. First we need to figure out how many columns we have by calling the ncol function. 
+
+Then we need to initialize a vector that is going to store the means of each column. The length of this vector has to be equal to the number of columns.
+
+We then need a for loop to go through each column. The for loop goes through each column and calculates the mean.
+
+Finally the function returns the means for all columns.
+
+One problem may be that the presence of missing values will not allow us to calculate the means so we may need to exclude them from the calculation. We can add a second argument to the function called removeNA which will be equal to TRUE. We then pass this argument to the mean function.
+
+```{r}
+columnMean <- function(y, removeNA = TRUE) {
+  nc <- ncol(y) 
+  means <- numeric(nc) 
+  
+  for(i in 1:nc) {
+    means[i] <- mean(y[, i], na.rm = removeNA)
+  }
+  
+  means
+}
+
+columnMean(airquality)
+```
