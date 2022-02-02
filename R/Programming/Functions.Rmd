@@ -102,7 +102,7 @@ myplot <- function(x, y, type = "l", ...) {
 The ... argument is also necessary when the number of arguments passed to the function cannot be known in advance.
 
 ```{r, eval=FALSE}
-args(paste)
+args(paste) #args() is used to see a function's arguments
 function(..., sep = " ", collapse = NULL)
 ```
 

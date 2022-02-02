@@ -87,3 +87,6 @@ All AND operators are evaluated before OR operators
 The which() function takes a logical vector as an argument and returns the indices of the vector that are TRUE. For example which(c(TRUE, FALSE, TRUE)) would return the vector c(1, 3).
 
 Like the which() function, the functions any() and all() take logical vectors as their argument. The any() function will return TRUE if one or more of the elements in the logical vector is TRUE. The all() function will return TRUE if every element in the logical vector is TRUE.
+
+<center> Other useful operators </center>
+* `%%` get the remainder
