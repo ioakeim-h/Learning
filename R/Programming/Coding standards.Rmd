@@ -1,0 +1,24 @@
+---
+title: "Coding Standards"
+author: "Akis"
+date: "02/02/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. Always use a text editor
+2. Indent your code\
+<<<<<<< HEAD
+Indenting is the idea that different blocks of code should be spaced over to the right a bit more than other blocks of code so you can see how the flow of the program goes based on the indenting alone. To adjust the indentation go to RStudio's preferences - Code - Change Tab Width to 4 or 8.
+3. Limit the width of your code (80 columns?)\
+It is possible to indent off to the right forever so you need to limit how far to the right you can go and this is usually determined by the number of columns of text. To adjust the width go to preferences - Code - Display - Set Margin Column to 80
+4. Limit the length of individual functions/
+Limit them to one basic activity
+=======
+Indenting is the idea that different blocks of code should be spaced over to the right a bit more than other blocks of code so you can see how the flow of the program goes based on the indenting alone. To adjust the indentation go to RStudio's preferences - Code - Change Tab Width to 4.
+3. Limit the width of your code (80 columns?)\
+It is possible to indent off to the right forever so you need to limit how far to the right you can go and this is usually determined by the number of columns of text. To adjust the width go to preferences - Code - Display - Set Margin Column to 80
+>>>>>>> fd7d6f0e969ddb3e26d4e1f74b27cab67b11d8ee
