@@ -17,6 +17,19 @@ knitr::opts_chunk$set(echo = TRUE)
 * `<=` , `=>`
 * `==` for exact equality
 * `!=` for inequality
+* `!` allows us to perform a NOT check, by negating or swapping a check's resul`
+
+* `isTRUE()` checks if an argument is TRUE
+* `identical()` checks if the arguments passed are identical
+* `xor()` - Stands for exclusive OR, and takes two arguments. If one argument evaluates to TRUE and one argument evaluates to FALSE, then this function will return TRUE, otherwise it will return FALSE.
+
+```{r}
+xor(5 == 6, !FALSE)
+```
+
+5 == 6 evaluates to FALSE, !FALSE evaluates to TRUE, so xor(FALSE, TRUE) evaluates to TRUE. On the other hand if the first argument was changed to 5 == 5 and the second argument
+was unchanged then both arguments would have been TRUE, so
+xor(TRUE, TRUE) would have evaluated to FALSE.
 
 ## Logical statements
 
@@ -30,3 +43,47 @@ Break this problem down into 2 pieces. The `|` in the middle states that AT LEAS
 ```
 
 
+## Examine relationships between multiple logical expressions
+
+<u> The AND operator </u>
+
+`&` or `&&`- if the right and left operands of AND are both TRUE the entire expression is TRUE, otherwise it is False.\
+You can use the `&` operator to evaluate AND across a vector. 
+
+```{r}
+TRUE & c(TRUE, FALSE, FALSE)
+```
+
+What happens in this case is that the left operand `TRUE` is recycled across every element in the vector of the right operand. This is the equivalent statement as c(TRUE, TRUE, TRUE) & c(TRUE, FALSE, FALSE)./
+/
+The `&&` version of AND only evaluates the first member of a vector.
+
+```{r}
+TRUE && c(TRUE, FALSE, FALSE)
+```
+
+In this case, the left operand is only evaluated with the first member of the right operand (the vector). The rest of the elements in the vector aren't evaluated at all in this expression.
+
+<u> The OR operator </u>
+
+The `|` version of OR evaluates OR across an entire vector, while the `||` version of OR only evaluates the first member of a vector.
+
+An expression using the OR operator will evaluate to TRUE if the left operand or the right operand is TRUE. If both are TRUE, the expression will evaluate to TRUE, however if neither are TRUE, then the expression will be FALSE.
+
+```{r}
+TRUE | c(TRUE, FALSE, FALSE)
+TRUE || c(TRUE, FALSE, FALSE)
+```
+
+#### Order of operations
+
+All AND operators are evaluated before OR operators
+```{r}
+5 > 8 || 6 != 8 && 4 > 3.9
+```
+
+### The which() function, any() and all()
+
+The which() function takes a logical vector as an argument and returns the indices of the vector that are TRUE. For example which(c(TRUE, FALSE, TRUE)) would return the vector c(1, 3).
+
+Like the which() function, the functions any() and all() take logical vectors as their argument. The any() function will return TRUE if one or more of the elements in the logical vector is TRUE. The all() function will return TRUE if every element in the logical vector is TRUE.
