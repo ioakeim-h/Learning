@@ -18,10 +18,13 @@ Put your functions in a separate file, an Rscript (not directly in the command l
 * Provide the functionality of the function
 
 ```{r, eval=FALSE}
-f <- function(<arguments>) {
-  # code here
+function_name <- function(arg1, arg2){
+	# Manipulate arguments in some way
+	# Return a value
 }
 ```
+
+To get the source code of a function just type the function's name.
 
 * Functions can be passed as arguments to other functions
 * Functions can be nested, so that you can define a function inside of another function. The return value of a function is the last expression in the function body to be evaluated
