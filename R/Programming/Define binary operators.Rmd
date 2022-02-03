@@ -1,0 +1,53 @@
+---
+title: "Defining binary operators"
+author: "Akis"
+date: "03/02/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<center> Define your own binary operators </center>\
+
+You're familiar with adding, subtracting, multiplying, and dividing numbers in R. To do this you use the +, -, *, and / symbols. These symbols are called binary operators because they take two inputs, an input from the left and an input from the right. In R you can define your own binary operators.
+
+The syntax for creating new binary operators in R is unlike anything else in R, but it allows you to define a new syntax for your function. I would only recommend making your own binary operator if you plan on using it often!
+
+User-defined binary operators have the following syntax:
+     `%[whatever]%` 
+where [whatever] represents any valid variable name.
+ 
+Let's say I wanted to define a binary operator that multiplied two numbers and
+then added one to the product. An implementation of that operator is below:
+
+```{r,eval=F}
+
+"%mult_add_one%" <- function(left, right){ # Notice the quotation marks!
+  left * right + 1
+}
+
+```
+
+I could then use this binary operator like `"4 %mult_add_one% 5"` which would
+evaluate to 21.
+
+Write your own binary operator below from absolute scratch! Your binary
+operator must be called `%p%` so that the expression:
+
+      "Good" %p% "job!"
+
+will evaluate to: "Good job!"
+
+```{r}
+"%p%" <- function(left, right){ 
+  paste(left, right)
+}
+
+"Good" %p% "job"
+
+"I" %p% "am" %p% "starting" %p% "to" %p% "like" %p% "this!"
+```
+
+
