@@ -85,11 +85,9 @@ f(45)
 ```
 Notice that "45" got printed first before the error was triggered. This is because `b` did not have to be evaluated until after `print(a)`. Once the function tried to evaluate `print(b)` it had to throw an error.
 
-## The "..." argument
+## The ellipsis (...) argument
 The ... argument indicates a variable number of arguments that are usually passed on to other functions.
 * ... is often used when extending another function and you don't want to copy the entire argument list of the original function.
-
-
 
 Lets say that we want to change something in the plot() function. We create our own function "myplot" which will replicate some of the arguments of the original plot function, like x and y, but its going to change the default "type" argument. However, the plot() function has many other arguments and we want to leave them as they are. this is where we pas the "..." which will be used to preserve all the other arguments in the plot() function. 
 
@@ -110,7 +108,16 @@ The paste() function concatenates a set of strings to create a vector of strings
 
 One catch with ... is that any arguments that appear **after** ... on the argument list must be named explicitly and cannot be partially matched.
 
-#### Example 1
+
+
+
+
+
+
+
+
+
+#### function Example 1
 
 The following function takes two numbers and adds them together.
 
@@ -123,7 +130,7 @@ add(3, 5)
 ```
 The function adds two values so it has to take two arguments (x and y). Calling add and passing it the arguments 3 and 5 returns 8, meaning that the function works.
 
-#### Example 2
+#### Function Example 2
 Where x is a series of numbers, the function 'above10' returns the numbers that are above 10.
 ```{r}
 above10 <- function(x) {
@@ -161,7 +168,7 @@ above(x) # no need for the n argument
 ```
 
 
-#### Example 3 (missing values)
+#### Function Example 3 (missing values)
 A function to calculate the mean of each column in a data frame.
 
 ```{r}
