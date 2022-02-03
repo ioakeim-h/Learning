@@ -9,12 +9,17 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-R has developed a special representation of dates and times
+R has a special way of representing dates and times, which
+can be helpful if you're working with data that show how
+something changes over time (i.e. time-series data) or if
+your data contain some other temporal information, like dates of birth.
 
 * Dates are represented by the `Date` class
 * Times are represented by the `POSIXct` or the `POSIXlt` class
-* Dates are stored internally as the number of dates since 1970-01-01
-* Times are stored internally as the number of seconds since 1970-01-01
+
+Internally, dates are stored as the number of days since 1970-01-01 and times are stored as either the number of
+seconds since 1970-01-01 (for 'POSIXct') or a list of
+seconds, minutes, hours, etc. (for 'POSIXlt').
 
 <center> Dates </center>
 
