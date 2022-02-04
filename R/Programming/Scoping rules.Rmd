@@ -36,7 +36,7 @@ When R tried to bind a value to asymbol, it searches through a series of **envir
 1. Search the global environment for a ymbol name matching the one requested.
 2. Search the namespaces of each of the packages on the search list (search list can be found using the **search()** function).
 
-```{r}
+```{r, collapse=TRUE}
 search()
 ```
 
@@ -51,7 +51,7 @@ search()
 * In this case the environment in which a function is defined is the body of another function.
 
 Example:
-```{r}
+```{r, collapse=TRUE}
 make.power <- function(n) {
   pow <- function(x) {
     x^n
@@ -80,7 +80,7 @@ Answer:  The **make.power** function returns the function **pow** as its value. 
 
 What is in a function's environment? You can look at the environment in which the function is defined by calling the **ls(environment())** function.
 
-```{r}
+```{r, collapse=TRUE}
 ls(environment(cube))
 get("n", environment(cube))
 
@@ -90,7 +90,7 @@ get("n", environment(square))
 
 # Lexical vs Dynamic scoping
 
-```{r}
+```{r, collapse=TRUE}
 y <- 10
 
 f <- function(x) {

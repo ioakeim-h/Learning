@@ -40,7 +40,7 @@ operator must be called `%p%` so that the expression:
 
 will evaluate to: "Good job!"
 
-```{r}
+```{r, collapse=TRUE}
 "%p%" <- function(left, right){ 
   paste(left, right)
 }

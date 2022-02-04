@@ -15,7 +15,7 @@ Let's start by using d1 <- Sys.Date() to get the current date
 and store it in the variable d1. (That's the letter 'd' and
 the number 1.)
 
-```{r}
+```{r, collapse=TRUE}
 d1 <- Sys.Date()
 
 class(d1) # confirm d1 is a date object
@@ -26,7 +26,7 @@ unclass(d1) # see what d1 looks like internally
 
 What if we need to reference a date prior to 1970-01-01?
 
-```{r}
+```{r, collapse=TRUE}
 d2 <- as.Date("1969-01-01")
 unclass(d2)
 ```
@@ -116,7 +116,7 @@ The same line of thinking applies to addition and the other comparison operators
 
 Use difftime(Sys.time(), t1, units = 'days') to find the amount of time in DAYS that has passed since you created t1.
 
-```{r}
+```{r, collapse=TRUE}
 difftime(Sys.time(), t1, units = 'days')
 ```
 

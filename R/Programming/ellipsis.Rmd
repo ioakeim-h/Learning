@@ -47,7 +47,7 @@ telegram that formats sentences for telegrams.
 For example the expression `telegram("Good", "morning")` should evaluate to:
 "START Good morning STOP"
 
-```{r}
+```{r, collapse=TRUE}
 telegram <- function(...){
   paste("START", ... , "STOP")
 }
@@ -89,7 +89,7 @@ sentence from parts of speech that you provide as arguments. We'll write most
 of the function, but you'll need to unpack the appropriate arguments from the
 ellipses.
 
-```{r}
+```{r, collapse=TRUE}
 mad_libs <- function(...){
   # Do your argument unpacking here!
   my_args <- list(...)

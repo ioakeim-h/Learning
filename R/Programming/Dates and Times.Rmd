@@ -25,7 +25,7 @@ seconds, minutes, hours, etc. (for 'POSIXlt').
 
 Dates are represented by the **Date class** and can be coerced from a character string using the `as.Date()` function.
 
-```{r}
+```{r, collapse=TRUE}
 x <- as.Date("1970-01-01")
 x
 
@@ -50,7 +50,7 @@ There are a number of generic functions that work on dates and times.
 
 Times can be coerced from a character string using the **as.POSIXlt** or **as.POSIXct** function.
 
-```{r}
+```{r, collapse=TRUE}
 x <- Sys.time() # system time
 x
 
@@ -72,7 +72,7 @@ p$sec
 
 Finally, there is the `strptime` function in case your dates are written in a different format.
 
-```{r}
+```{r, collapse=TRUE}
 datestring <- c("February 02, 2022 15:00", "December 10, 2011 9:00")
 x <- strptime(datestring, "%B %d, %Y %H:%M")
 x
