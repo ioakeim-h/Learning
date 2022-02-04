@@ -46,8 +46,8 @@ the `read.table()` function is one of the most common functions for reading data
 
 For small to moderately sized datasets, you can usually call `read.table()` without specifying any other arguments.
 
-```{r}
-# data <- read.table("foo.txt")
+```{r,eval=FALSE}
+data <- read.table("foo.txt")
 ```
 
 # Reading in Larger Datasets with read.table
@@ -61,10 +61,10 @@ With large data sets we need to consider the following things:
 \
 * Use the `colClasses` argument. Specifying this option instead of using the default can make `read.table()` run MUCH faster. You have to know the class of each column in your data frame. If all of the columns are "numeric", for example, then you can just set `colClasses = "numeric"`. A quick way to figure out the classes of each column is to read only the first 100 or 1000 rows of your data set by specifying the `nrows` argument and then looping over each of the columns using `sapply()` and call the `class` function. Then, we can read the entire data set as shown below:
 
-```{r}
-# initial <- read.table("datatable.txt", nrows = 100)
-# classes <- sapply(initial, classes)
-# tabAll <- read.table("datatable.txt", colClasses = classes)
+```{r, eval=FALSE}
+initial <- read.table("datatable.txt", nrows = 100)
+classes <- sapply(initial, classes)
+tabAll <- read.table("datatable.txt", colClasses = classes)
 ```
 
 # Textual Data Formats
@@ -80,7 +80,7 @@ Beyond the tabular format, the CSV file, there are other textual formats that ar
 
 Another way to pass data around is by deparsing the R object with `dput` and reading it back in with `dget`.
 
-```{r}
+```{r, collapse=TRUE}
 y <- data.frame(a = 1, b = "a")
 dput(y)
 structure(list(a = 1,
@@ -97,7 +97,7 @@ new.y
 
 Multiple objects can be deparsed using the dump function and read back in using `source`.
 
-```{r}
+```{r, collapse=TRUE}
 x <- "foo"
 y <- data.frame(a = 1, b = "a")
 dump(c("x", "y"), file = "data.R")
@@ -119,7 +119,7 @@ Data are read in using *connection* interfaces. For example, when you call read.
 
 ## File connections
 
-```{r eval=FALSE}
+```{r, eval=FALSE}
 str(file)
 function(description = "", open = "", blocking = TRUE,
          encoding = getOption("encoding"))
@@ -136,7 +136,7 @@ We do not often have to deal with the connection interface directly but in some 
 
 ### Reading lines of a text file
 
-```{r eval=FALSE}
+```{r, eval=FALSE}
 con <- gzfile("words.gz")
 x <- readLines(con, 10)
 x

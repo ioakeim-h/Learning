@@ -1,5 +1,5 @@
 ---
-title: "Tips and Tricks"
+title: "Working with files"
 author: "Akis"
 date: "19/01/2022"
 output: html_document
@@ -73,9 +73,3 @@ order to create nested directories, 'recursive' must be set to TRUE. Create a di
 
 `dir.create(file.path("testdir2", "testdir3"), recursive = TRUE)`
 
-
-# Get code for an existing object
-dput(object)
-
-# Check if objects are identical
-identical(object1, object2)

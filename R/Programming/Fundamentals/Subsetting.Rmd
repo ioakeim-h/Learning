@@ -17,7 +17,7 @@ A number of operators can be used to extract subsets of R objects:
 
 For example if you subset a vector you will get back a vector. Subset a list and you will get a list.
 
-```{r}
+```{r, collapse=TRUE}
 #Extract the first element of object x
 x <- c("a", "b", "c", "d", "e")
 x[1]
@@ -39,7 +39,7 @@ How to extract elements from a vector based on specified conditions:
 
 For example, we may only be interested in the first 20 elements of a vector, or only the elements that are not NA, or only those that are positive or correspond to a specific variable of interest.
 
-```{r}
+```{r, collapse=TRUE}
 # Example object
 c(1.45989479898373, NA, NA, NA, 0.343478985070138, -0.765250400381116, 
 0.592711619887493, 0.475780864848148, NA, -1.49800584466182, 
@@ -69,7 +69,7 @@ x[-c(2,10)]
 
 One of the reasons to use names for objects is to make reference to different elements of the object by name. 
 
-```{r}
+```{r, collapse=TRUE}
 x <- list(foo = 1:4, bar = 0.6)
 # Extract the first element of the list x
 # Use single brackets
@@ -88,7 +88,7 @@ Using the single brackets we got the list that contained the sequence 1 to 4. By
 ## Extracting multiple elements of a list
 To extract multiple elements from a list we need to use the single bracket operator.
 
-```{r}
+```{r, collapse=TRUE}
 x <- list(foo = 1:4, bar = 0.6, baz = "hello")
 # Extract the first and last element of the above list
 x[c(1,3)]
@@ -99,7 +99,7 @@ You cannot use double brackets or the dollar sign operator to extract multiple e
 # Subsetting matrices
 
 
-```{r}
+```{r, collapse=TRUE}
 x <- matrix(1:6, 2, 3)
 x[1,2] #first row, second column
 
@@ -111,13 +111,13 @@ x[, 2] # prints second column
 
 When a single element of a matrix is retrieved, it is returned as a vector of length 1 rather than a 1 x 1 matrix. This behavior can be turned off by setting `drop = FALSE`.
 
-```{r}
+```{r, collapse=TRUE}
 x <- matrix(1:6, 2, 3)
 x[1,2, drop = FALSE]
 ```
 This gave us back a 1 x 1 matrix with the element 3 in it. An example with missing indices:
 
-```{r}
+```{r, collapse=TRUE}
 x <- matrix(1:6, 2, 3)
 x[1, , drop = F]
 ```
@@ -128,7 +128,7 @@ A partial match occurs if the whole of the element of x matches the beginning of
 
 Partial matching of names is allowed with `[[]]` and `$`.
 
-```{r}
+```{r, collapse=TRUE}
 x <- list(aardvark = 1:5)
 x$a
 x[["a"]]
@@ -137,7 +137,7 @@ The `$` looks for a name in this list that matches the letter a. In this case we
 
 The double bracket operator expects that the name you pass it is going to be an exact match for one of the names in the list. By default, the `[[]]` does not do partial matching. In the above list we get a NULL value because there is no element in the list that has the name a. However, if we pass a second argument (`exact = FALSE`) we can make the search more flexible:
 
-```{r}
+```{r, collapse=TRUE}
 x <- list(aardvark = 1:5)
 x[["a", exact = FALSE]]
 ```
@@ -145,7 +145,7 @@ x[["a", exact = FALSE]]
 
 ### Removing missing values 
 
-```{r}
+```{r, collapse=TRUE}
 x <- c(1, 2, NA, 4, NA, 5)
 bad <- is.na(x) #Creates logical vector specifying where the NAs are.
 bad
@@ -155,7 +155,7 @@ Just like single-bracket sub-setting, saying `x[bad]` would return only the valu
 
 ### Getting only the non-missing values
 
-```{r}
+```{r, collapse=TRUE}
 x <- c(1, 2, NA, 4, NA, 5)
 good <- complete.cases(x)
 good
@@ -165,7 +165,7 @@ x[good]
 
 We can use complete.cases to remove missing values from data frames.
 
-```{r}
+```{r, collapse=TRUE}
 airquality[1:6, ] #data frame
 good <- complete.cases(airquality)
 airquality[good, ][1:6, ]
@@ -174,13 +174,13 @@ airquality[good, ][1:6, ]
 
 Suppose that you have two vectors, x and y. x is the sequence 1:4 and y 6:9 and you want to add the two vectors together. What we mean when we say add them is to add the first element of x to the first element of y (i.e. 1 + 6). In other programming languages this would require to loop through each element but in R we can just use the + operator:
 
-```{r}
+```{r, collapse=TRUE}
 x <- 1:4; y <- 6:9
 x + y
 ```
 We can also multiply, subtract and divide.
 
-```{r}
+```{r, collapse=TRUE}
 x <- 1:4; y <- 6:9
 x - y
 x * y
@@ -192,7 +192,7 @@ x / y
 
 You can do the same with matrices.
 
-```{r}
+```{r, collapse=TRUE}
 x <- matrix(1:4, 2, 2); y <- matrix(rep(10, 4), 2, 2) # rep() replicates 10 four times
 
 x * y ## element-wise multiplication

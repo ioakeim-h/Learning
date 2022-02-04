@@ -18,7 +18,7 @@ Missing values are denoted by **NA** or **NaN** for undefined mathematical opera
 * NA values have a class also, so there are integer NA, character NA, etc
 * A NaN value is also NA but the converse is not true
 
-```{r}
+```{r,collapse=TRUE}
 x <- c(1, 2, NA, 10, 3)
 is.na(x)
 is.nan(x)
@@ -26,7 +26,7 @@ is.nan(x)
 
 
 ### Calculate the total number of NAs in a data set
-```{r}
+```{r,collapse=TRUE}
 # creating an example data set
 y <- rnorm(1000)
 z <- rep(NA, 1000)

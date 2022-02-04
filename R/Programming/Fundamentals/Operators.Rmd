@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 * `identical()` checks if the arguments passed are identical
 * `xor()` - Stands for exclusive OR, and takes two arguments. If one argument evaluates to TRUE and one argument evaluates to FALSE, then this function will return TRUE, otherwise it will return FALSE.
 
-```{r}
+```{r,collapse=TRUE}
 xor(5 == 6, !FALSE)
 ```
 
@@ -38,19 +38,19 @@ a.k.a. 'union') or whether they are both TRUE with A & B (logical 'and' a.k.a. '
 the negation of A and is TRUE when A is FALSE and vice versa.
 
 Break this problem down into 2 pieces. The `|` in the middle states that AT LEAST ONE of the pieces is TRUE.
-```{r}
+```{r,collapse=TRUE}
 (TRUE == TRUE) | (TRUE == FALSE)
 ```
 
 
 ## Examine relationships between multiple logical expressions
 
-<u> The AND operator </u>
+### The AND operator 
 
 `&` or `&&`- if the right and left operands of AND are both TRUE the entire expression is TRUE, otherwise it is False.\
 You can use the `&` operator to evaluate AND across a vector. 
 
-```{r}
+```{r,collapse=TRUE}
 TRUE & c(TRUE, FALSE, FALSE)
 ```
 
@@ -58,19 +58,19 @@ What happens in this case is that the left operand `TRUE` is recycled across eve
 /
 The `&&` version of AND only evaluates the first member of a vector.
 
-```{r}
+```{r,collapse=TRUE}
 TRUE && c(TRUE, FALSE, FALSE)
 ```
 
 In this case, the left operand is only evaluated with the first member of the right operand (the vector). The rest of the elements in the vector aren't evaluated at all in this expression.
 
-<u> The OR operator </u>
+### The OR operator 
 
 The `|` version of OR evaluates OR across an entire vector, while the `||` version of OR only evaluates the first member of a vector.
 
 An expression using the OR operator will evaluate to TRUE if the left operand or the right operand is TRUE. If both are TRUE, the expression will evaluate to TRUE, however if neither are TRUE, then the expression will be FALSE.
 
-```{r}
+```{r,collapse=TRUE}
 TRUE | c(TRUE, FALSE, FALSE)
 TRUE || c(TRUE, FALSE, FALSE)
 ```
@@ -78,7 +78,7 @@ TRUE || c(TRUE, FALSE, FALSE)
 #### Order of operations
 
 All AND operators are evaluated before OR operators
-```{r}
+```{r,collapse=TRUE}
 5 > 8 || 6 != 8 && 4 > 3.9
 ```
 
