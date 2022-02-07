@@ -1,0 +1,111 @@
+---
+title: "Loop Functions"
+author: "Akis"
+date: "07/02/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<center><h1> Loop Functions </center></h1>
+
+Functions that implement looping:
+
+* **lapply**: Loop over a list and evaluate a function on each element
+* **sapply**: Same as **lapply** but simplifies the result
+* **aply**: Apply a function over the margins of an array
+* **tapply** (short for table apply): Apply a funciton over subsets of a vector
+* **mapply**: Multivariate version of **lapply**
+
+An auxillary function **split** is also iseful, particularly in conjuction with **lapply**. It splits objects into subpieces. 
+
+## lapply
+
+`lapply` takes three arguments (1) a list x; (2) a function (or the name of a function) `FUN`; (3) other arguments via its ... argument. If `x` is not a list, it will be coerced to alist using `as.list`.
+
+```{r,collapse=TRUE}
+str(lapply)
+```
+
+
+`lapply` always returns a list, regardless of class input.
+
+```{r, collapse=TRUE}
+x <- list(a = 1:5, b = rnorm(10))
+x
+
+lapply(x, mean) #produces mean of list x (i.e. mean of a and mean of b) by looping thourgh the list's elements
+```
+
+
+#### Anonymous functions
+
+`lapply` and friends make heavy use of *anonymous* functions. These are functions that are not assigned a name but are generated on the spot.
+
+```{r, collapse=TRUE}
+x <- list(a = matrix(1:4,2,2), b = matrix(1:6,3,2))
+x
+
+#Want to extract the first column from each of the matrices
+#There is no function to do this but we can do it with an anonymous function.
+
+lapply(x, function(myarg) myarg[, 1])
+
+#I gave my anonymous function an argument and using that argument I extracted the first column of the matrices in x.
+```
+
+## sapply
+
+`sapply` will try to simplify the result of `lapply` if possible.
+* If the result is a list where every element is length 1, then a vector is returned.
+* If the result is a list where every element is a vector of the same length (>1), a matrix is returned.
+* If it can't figure things out, a list is returned.
+
+## apply
+
+`apply` is used to evalute a function (often an anonymous one) over the margins of an array.
+
+* It is most often used to apply a function to the rows or columns of a matrix.
+* It can be used with general arrays, e.g. taking the average of an array of matrices.
+* It is not really faster than writing a loop, but it works in one line! (useful when writing in command line)
+
+Arguments:
+
+```{r, collapse=TRUE}
+str(apply)
+```
+
+* **X** is an array.
+* **MARGIN** is an integer vector indicating which margins should be "retained".
+* **FUN** is a function to be applied
+* ... is for other arguments to be passed to FUN
+
+```{r, collapse=TRUE}
+x <- matrix(rnorm(200), 20, 10) 
+#matrix has 20 rows and 10 cols. This translates to dimension/margin 1 having 20 rows, and dimension/margin 2 having 10 cols.
+
+apply(x, 2, mean) 
+#The margin 2 means that we keep the second dimension, i.e the 10 columns and collapse the first dimension which is the number of rows. What is returned is the mean of each of the 10 columns.
+
+apply(x, 1, sum) 
+#Keep the first dimension, i.e. the 20 rows and collapse the 10 columns. Returns the sum of each of the 20 rows.
+```
+
+#### Other ways to apply (quantiles)
+
+Suppose you have a matrix and you want to go through each row of the matrix and calculate the 25th and the 75th percentile of that row.
+
+```{r, collapse=TRUE}
+x <- matrix(rnorm(200), 20, 10)
+apply(x, 1, quantile, probs = c(0.25, 0.75))
+# quantile is the function
+# probs is an argument of quantile (remember: apply is function (X, MARGIN, FUN, ...).
+```
+
+What this call does is it goes through each row of the matrix and calculates the 25th and 75th percentile. Thus, for each row there is going to be two numbers that are returned. What apply will do is to create a matrix that has 2 rows and the number of columns equal to the number of columns of the matrix in x (i.e. 20).
+
+
+## mapply
+
