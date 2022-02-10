@@ -109,3 +109,50 @@ What this call does is it goes through each row of the matrix and calculates the
 
 ## mapply
 
+**mapply** is a multivariate apply of sorts which applied a function in parallel over a set of arguments. Where **apply** is used to apply a function over a list, **mapply** can be used to apply a function over multiple lists at the same time.
+
+```{r, collapse=TRUE}
+str(mapply)
+```
+
+* **FUN** is a function to apply/
+The number of arguments that the function takes has to be at least the number of lists that you are going to pass to mapply.
+
+* ... contains arguments to apply over
+* **MoreArgs** is a list of other arguments to be applied to **FUN**
+* **SIMPLIFY** indicates wherther the result should be simplified
+
+```{r, collapse=T}
+#mapply example with rep()
+
+list(rep(1, 4), rep(2,3), rep(3,2), rep(4,1))
+
+mapply(rep, 1:4, 4:1) 
+
+# same result
+```
+
+## tapply
+
+**tapply** is used to apply a function over subsets of a vector.
+
+```{r, collapse=TRUE}
+str(tapply)
+
+```
+
+* **X** is a vector
+* INDEX is a factor or a list of factors (or else they are coerced to factors)
+* FUN is a function to be applied
+* ... contains other arguments to be passed to FUN
+* **simplify**, should we simplify the result?
+
+```{r, collapse=TRUE}
+x <- c(rnorm(10), runif(10), rnorm(10, 1))
+f <- gl(3, 10)
+f
+
+tapply(x, f, mean)
+
+```
+
