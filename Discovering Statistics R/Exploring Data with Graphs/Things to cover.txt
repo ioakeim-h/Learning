@@ -1,0 +1,6 @@
+1. Data Screening
+- Exploring Distributions
+Histograms, Density plots, Box plots...
+
+- Identifying outliers
+Box plots

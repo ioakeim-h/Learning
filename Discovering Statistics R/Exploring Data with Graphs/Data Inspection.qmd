@@ -1,0 +1,124 @@
+---
+title: "Step 1: Data Inspection"
+format: html
+editor: visual
+---
+
+## Visualizing Data
+
+This is the first step of any data analysis. Begin by inspecting your data with a picture, see how it looks and only then think about interpreting the more vital statistics.
+
+The goal of visualization is not to create delightful graphs but to present data clearly. Some general guidelines are:
+
+-   Give axes informative labels (including units of measurement).
+
+-   Rather than emphasizing aesthetics, induce the reader to think about the data presented.
+
+-   Avoid excess ink: do not include features unless they are absolutely necessary to interpret the data.
+
+-   Avoid distorting the data (e.g. by by scaling the y-axis in some weird way to give a false impression).
+
+-   Do not use patterns, 3-D effects, shadows, etc
+
+## Syntax for ggplots
+
+Visual elements are known as geoms (short for geometric objects). These geoms have aesthetic properties which can be defined in general for the whole plot, or individually for a specific part of it. When aesthetics are defined for specific parts, the general settings of the plot will be overriden.
+
+For a table outlining the parameters required for commonly used geoms, see Discovering statistics with R, page 124, table 4.1.
+
+The attributes of the geom can be adjusted. These include: the color of the geom, the color that fills the geom, the type of line used (solid, dashed, etc), the shape of the data points (triangle, square, etc), the size of the geom, and the transparency of the geom (known as alpha).
+
+The geoms are what make up a plot. To create a plot with ggplot, the general version of the command looks like this:
+
+**`myGraph <- ggplot(myData, aes(variable_for_x_axis, variable_for_y_axis)) + geom_of_choice + labels(x = "x-axis Title", y = "y-axis Title")}`**
+
+## Avoid Overplotting
+
+Plots can become cluttered or unclear when there is too much data to present in a single graph, or when data on a plot overlap. To avoid this, we can make a position adjustment or use faceting.
+
+A position adjustment can be applied by setting the position argument within a geom. Common options include:
+
+-   "dodge" -- places elements side by side
+
+-   "stack" and "fill" -- stack elements on top of each other (with \`"fill"\` scaling to 100%)
+
+-   "identity" -- keeps original positions
+
+-   "jitter" -- adds random noise to reduce overplotting
+
+Below is an example with geom point and jitter position:
+
+**`ggplot(myData, aes(x, y)) + geom_point(position = "jitter")`**
+
+Faceting splits a plot into subgroups. There are two ways to facet:
+
+1.  **`facet_grid()`**: Creates a grid of subplots with rows and columns, specifying row and column variables.
+2.  **`facet_wrap()`**: Creates a series of subplots arranged in a single row or column, wrapping into multiple rows or columns based on the number of panels.
+
+facet_grid: **`ggplot(myData, aes(x, y)) + geom_point() + facet_grid(row_var ~ col_var)`**
+
+facet_wrap: **`ggplot(myData, aes(x, y)) + geom_point() + facet_wrap(~ variable)`**
+
+## Exploring Relationships with Scatter Plots
+
+Scatterplots can be used to explore the relationships between variables and also help in identifying outliers. Scatterplots often have a regression line that summarizes the relationship between variables. Adding this line creates a shaded area around it which is the 95% Confidence Interval (CI).
+
+### Simple scatter plot
+
+The simple scatter plot looks at the relationship between two variables. The general syntax is as follows:
+
+```         
+ggplot(myData, aes(x, y)) + 
+  geom_point() + # Scattered data
+  geom_smooth(method="lm") + # Adds a straight line
+  labs(x="xLabel", y="yLabel") # Adds axes labels
+```
+
+-   For a line that is robust to outliers, we can use the method `"rlm"` after having loaded the "MASS" package.
+-   The CI shade can be manipulated by adjusting the parameters in the `geom_smooth()` function: (1) change its colour `fill=Blue`, (2) its transparency `alpha=0.1`, (3) or switch it off `se=F`.
+
+### Grouped scatter plot
+
+The grouped scatterplot displays data points for multiple groups using different colours or shapes. Each group is typically defined by a categorical variable. The general syntax is as follows:
+
+```         
+ggplot(myData, aes(x, y)) + 
+  geom_point() + 
+  geom_smooth(aes(fill=categorical_var), method="lm") + 
+  labs(x="xLabel", y="yLabel") 
+```
+
+## Exploring Data Distributions
+
+### Histograms
+
+Histograms are a great way to explore the distribution of the data. In a histogram, binwidths determine how data is grouped. R gives a default value for binwidth based on calculations occurring underneath. However, we can play around with binwidth to get an idea of the data distribution. The smaller the binwidth, the more detailed the histogram is.
+
+```         
+ggplot(myData, aes(numerical_var)) + 
+  geom_histogram(binwidth = 0.4) + 
+  labs(x="xLabel", y="Frequency") 
+```
+
+### Density Plots
+
+Density plots are similar to histograms except they smooth the distribution into a line (rather than bars).
+
+```         
+ggplot(myData, aes(x=numerical_var)) + 
+  geom_density() + 
+  labs(x="xLabel", y="Density Estimate") 
+```
+
+### Boxplots
+
+Like histograms, boxplots also tell us whether the distribution is symmetrical or skewed. If the whiskers are the same length then the distribution is symmetrical; however, if the top or bottom whisker is much longer than the opposite whisker then the distribution is skewed. Data points beyond the whiskers are outliers.
+
+The box itself represents the IQR, where the middle 50% of data lies. The lower end of the box is the Q1, where 25% of data lies. The upper end of the box is the Q3, where the remaining 25% of data lies. At the centre of the plot is the median (Q2). The whiskers extend to 1.5 times the IQR - designed to identify the range of "normal" data, thus anything beyond the whiskers is considered an outlier.
+
+```         
+# categorical_var is optional
+ggplot(myData, aes(x=categorical_var, y=numerical_var)) + 
+  geom_boxplot() + 
+  labs(x="xLabel", y="yLabel") 
+```
